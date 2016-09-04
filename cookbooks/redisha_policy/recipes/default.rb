@@ -7,5 +7,7 @@ include_recipe 'chef-sugar'
 master = search('node', 'tags:redis_master')
 if master.nil? || master.count == 0
 	node.default['redis-multi']['redis_master'] =  best_ip_for(node)
-	include_recipe 'redis_multi::master'
+	include_recipe 'redis-multi::master'
+else
+	include_recipe 'redis-multi::slave'
 end

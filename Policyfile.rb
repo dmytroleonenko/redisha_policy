@@ -5,9 +5,9 @@
 
 name "redisha-service"
 cookbook 'redis-multi', git: 'https://github.com/rackspace-cookbooks/redis-multi'
-cookbook 'redisio', git: 'https://github.com/rackspace-cookbooks/redisio', tag: '2.0.0_wip'
+cookbook 'redisha_policy', path: 'cookbooks/redisha_policy'
 default_source :supermarket
-run_list 'redisha-policy::default', 'redis-multi::default', 'redis-multi::enable', 'redis-multi::sentinel', 'redis-multi::sentinel_default', 'redis-multi::sentinel_enable'
+run_list 'redisha_policy::default', 'redis-multi::default', 'redis-multi::enable', 'redis-multi::sentinel', 'redis-multi::sentinel_default', 'redis-multi::sentinel_enable'
 default['redisio']['job_control'] = 'systemd'
 default['redisio']['sentinel']['manage_config'] = 'false'
 default['redisio']['default_settings']['address'] = '0.0.0.0'

@@ -4,7 +4,7 @@ maintainer_email 'dmitry.leonenko@gmail.com'
 license 'GNU GPL v3'
 description 'Installs/Configures redisha_policy'
 long_description 'Installs/Configures redisha_policy'
-version '0.1.0'
+version '0.1.1'
 
 # If you upload to Supermarket you should set this so your cookbook
 # gets a `View Issues` link

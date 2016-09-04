@@ -1,7 +1,8 @@
 {
-  "revision_id": "45abe5783b32fc8c0ea505bc1f5f32a20d0b46effb482ae5ed61997866bc7a48",
+  "revision_id": "f0935eefdc2a5067e2d4cd881d678fb6775bf7f7d6c4a664d7c19ca6c5e0401d",
   "name": "redisha-service",
   "run_list": [
+    "recipe[redisha_policy::default]",
     "recipe[redis-multi::default]",
     "recipe[redis-multi::enable]",
     "recipe[redis-multi::sentinel]",
@@ -20,16 +21,24 @@
         "revision": "4fbef613fc935ab8a165b847a2597e6446004920"
       }
     },
-    "redisio": {
-      "version": "2.2.2",
-      "identifier": "6a933b3b1b65111706aa3cc3b0094bf5e670189b",
-      "dotted_decimal_identifier": "29998230135334161.6481252698009609.83519505176731",
-      "cache_key": "redisio-87d1508cc0d1e1a2567de7245a5ec05a7e357519",
-      "origin": "https://github.com/rackspace-cookbooks/redisio",
+    "redisha_policy": {
+      "version": "0.1.1",
+      "identifier": "4bb7ea82c8c56db0ea484abddc677cb77762eafa",
+      "dotted_decimal_identifier": "21312841097725293.49797192113577063.137127423830778",
+      "source": "cookbooks/redisha_policy",
+      "cache_key": null,
+      "scm_info": {
+        "scm": "git",
+        "remote": "git@github.com:dmytroleonenko/redisha_policy.git",
+        "revision": "165c297b710a905818a656b25651de1b8bdc8a47",
+        "working_tree_clean": false,
+        "published": true,
+        "synchronized_remote_branches": [
+          "origin/master"
+        ]
+      },
       "source_options": {
-        "git": "https://github.com/rackspace-cookbooks/redisio",
-        "revision": "87d1508cc0d1e1a2567de7245a5ec05a7e357519",
-        "tag": "2.0.0_wip"
+        "path": "cookbooks/redisha_policy"
       }
     },
     "apt": {
@@ -63,6 +72,17 @@
       "source_options": {
         "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-sugar/versions/3.4.0/download",
         "version": "3.4.0"
+      }
+    },
+    "redisio": {
+      "version": "2.4.2",
+      "identifier": "4e198c7b4488fb94a2d9a31be977b58ce071bbf6",
+      "dotted_decimal_identifier": "21983139337636091.41837352181295479.199616665598966",
+      "cache_key": "redisio-2.4.2-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/redisio/versions/2.4.2/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/redisio/versions/2.4.2/download",
+        "version": "2.4.2"
       }
     },
     "ulimit": {
@@ -158,7 +178,7 @@
         ">= 0.0.0"
       ],
       [
-        "redisio",
+        "redisha_policy",
         ">= 0.0.0"
       ],
       [
@@ -172,6 +192,10 @@
       [
         "chef-sugar",
         "= 3.4.0"
+      ],
+      [
+        "redisio",
+        "= 2.4.2"
       ],
       [
         "ulimit",
@@ -199,6 +223,9 @@
       ]
     ],
     "dependencies": {
+      "redisha_policy (0.1.1)": [
+
+      ],
       "redis-multi (1.0.1)": [
         [
           "apt",
@@ -225,7 +252,7 @@
       "chef-sugar (3.4.0)": [
 
       ],
-      "redisio (2.2.2)": [
+      "redisio (2.4.2)": [
         [
           "ulimit",
           ">= 0.1.2"
