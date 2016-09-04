@@ -8,6 +8,26 @@
 			"MinLength": "1",
 			"MaxLength": "3"
 		},
+		"ChefServerUrl": {
+			"Description": "Chef server endpoint Url",
+			"Type": "String"
+		},
+		"ChefValidationClientName": {
+			"Description": "Chef validation client name",
+			"Type": "String"
+		},
+		"ChefPolicyName": {
+			"Description": "Chef polivy name",
+			"Type": "String"
+		},
+		"ChefPolicyGroup": {
+			"Description": "Chef policy group name",
+			"Type": "String"
+		},
+		"ChefValidationPemBase64": {
+			"Description": "Base64-encoded validation.pem",
+			"Type": "String"
+		},
 		"KeyName": {
 			"Description": "Name of an existing EC2 KeyPair to enable SSH access to the instance",
 			"Type": "AWS::EC2::KeyPair::KeyName",
@@ -326,7 +346,29 @@
 					"Fn::Base64": {
 						"Fn::Join": ["", [
 							{ "Fn::FindInMap": ["Constants", "InstanceValues", "userDataPre"]},
-							{"Fn::FindInMap": ["Constants", "InstanceValues", "firstRunInitialSeed"]},
+							"cat >/etc/chef/first-run.json <<EOF\n{\n  \"policy_name\": \"",
+							{
+								"Ref": "ChefPolicyName"
+							},
+							"\", \"policy_group\": \"",
+							{
+								"Ref": "ChefPolicyGroup"
+							},
+							"\"\n}\nEOF\n",
+							"cat >/etc/chef/client.rb <<EOF\nlog_level        :info\nlog_location     STDOUT\nchef_server_url  '",
+							{
+								"Ref": "ChefServerUrl"
+							},
+							"'\nvalidation_client_name '",
+							{
+								"Ref": "ChefValidationClientName"
+							},
+							"'\nvalidation_key '/etc/chef/validator.pem'\nEOF\necho \"",
+							{
+								"Ref": "ChefValidationPemBase64"
+							},
+							"\" | base64 --decode >/etc/chef/validator.pem\n",
+							
 							{"Fn::FindInMap": ["Constants", "InstanceValues", "userDataPost"]},
 							{
 								"Ref": "AWS::StackName"
@@ -364,7 +406,29 @@
 					"Fn::Base64": {
 						"Fn::Join": ["", [
 							{ "Fn::FindInMap": ["Constants", "InstanceValues", "userDataPre"]},
-							{"Fn::FindInMap": ["Constants", "InstanceValues", "firstRun"]},
+							"cat >/etc/chef/first-run.json <<EOF\n{\n  \"policy_name\": \"",
+							{
+								"Ref": "ChefPolicyName"
+							},
+							"\", \"policy_group\": \"",
+							{
+								"Ref": "ChefPolicyGroup"
+							},
+							"\"\n}\nEOF\n",
+							"cat >/etc/chef/client.rb <<EOF\nlog_level        :info\nlog_location     STDOUT\nchef_server_url  '",
+							{
+								"Ref": "ChefServerUrl"
+							},
+							"'\nvalidation_client_name '",
+							{
+								"Ref": "ChefValidationClientName"
+							},
+							"'\nvalidation_key '/etc/chef/validator.pem'\nEOF\necho \"",
+							{
+								"Ref": "ChefValidationPemBase64"
+							},
+							"\" | base64 --decode >/etc/chef/validator.pem\n",
+							
 							{"Fn::FindInMap": ["Constants", "InstanceValues", "userDataPost"]},
 							{
 								"Ref": "AWS::StackName"
@@ -394,7 +458,29 @@
 					"Fn::Base64": {
 						"Fn::Join": ["", [
 							{ "Fn::FindInMap": ["Constants", "InstanceValues", "userDataPre"]},
-							{"Fn::FindInMap": ["Constants", "InstanceValues", "firstRun"]},
+							"cat >/etc/chef/first-run.json <<EOF\n{\n  \"policy_name\": \"",
+							{
+								"Ref": "ChefPolicyName"
+							},
+							"\", \"policy_group\": \"",
+							{
+								"Ref": "ChefPolicyGroup"
+							},
+							"\"\n}\nEOF\n",
+							"cat >/etc/chef/client.rb <<EOF\nlog_level        :info\nlog_location     STDOUT\nchef_server_url  '",
+							{
+								"Ref": "ChefServerUrl"
+							},
+							"'\nvalidation_client_name '",
+							{
+								"Ref": "ChefValidationClientName"
+							},
+							"'\nvalidation_key '/etc/chef/validator.pem'\nEOF\necho \"",
+							{
+								"Ref": "ChefValidationPemBase64"
+							},
+							"\" | base64 --decode >/etc/chef/validator.pem\n",
+							
 							{"Fn::FindInMap": ["Constants", "InstanceValues", "userDataPost"]},
 							{
 								"Ref": "AWS::StackName"
@@ -424,7 +510,29 @@
 					"Fn::Base64": {
 						"Fn::Join": ["", [
 							{ "Fn::FindInMap": ["Constants", "InstanceValues", "userDataPre"]},
-							{"Fn::FindInMap": ["Constants", "InstanceValues", "firstRun"]},
+							"cat >/etc/chef/first-run.json <<EOF\n{\n  \"policy_name\": \"",
+							{
+								"Ref": "ChefPolicyName"
+							},
+							"\", \"policy_group\": \"",
+							{
+								"Ref": "ChefPolicyGroup"
+							},
+							"\"\n}\nEOF\n",
+							"cat >/etc/chef/client.rb <<EOF\nlog_level        :info\nlog_location     STDOUT\nchef_server_url  '",
+							{
+								"Ref": "ChefServerUrl"
+							},
+							"'\nvalidation_client_name '",
+							{
+								"Ref": "ChefValidationClientName"
+							},
+							"'\nvalidation_key '/etc/chef/validator.pem'\nEOF\necho \"",
+							{
+								"Ref": "ChefValidationPemBase64"
+							},
+							"\" | base64 --decode >/etc/chef/validator.pem\n",
+							
 							{"Fn::FindInMap": ["Constants", "InstanceValues", "userDataPost"]},
 							{
 								"Ref": "AWS::StackName"
@@ -483,9 +591,7 @@
 		"Constants": {
 			"InstanceValues": {
 				"userDataPre": "#!/bin/bash -xe\napt-get update && apt-get install -y python-pip && pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz\nmkdir /etc/chef;",
-				"firstRunInitialSeed": "cat >/etc/chef/first-run.json <<EOF\n{\n  \"run_list\": [ \"recipe[redis-multi::master]\", \"role[redis-ha]\" ],\n  \"redis-multi\": {\n    \"redis_master\": \"$(ip a li eth0 |grep 'inet ' |cut -d' ' -f6|cut -d/ -f1)\"\n}\n}\nEOF\n",
-				"firstRun": "cat >/etc/chef/first-run.json <<EOF\n{\n  \"run_list\": [ \"recipe[redis-multi::slave]\", \"role[redis-ha]\" ]\n}\nEOF\n",
-				"userDataPost": "cat >/etc/chef/client.rb <<EOF\nlog_level        :info\nlog_location     STDOUT\nchef_server_url  'https://api.opscode.com/organizations/nclnc'\nvalidation_client_name 'nclnc-validator'\nvalidation_key '/etc/chef/validator.pem'\nEOF\ncat >/etc/chef/validator.pem <<EOF\n-----BEGIN RSA PRIVATE KEY-----\nMIIEpQIBAAKCAQEA7Ipo2l9JC+mML2pNiSCsTnE1zKaKYZaMc41T0Uf2OCw4M4IF\nXilpjxIKAcHU35bwfsxDORTAxhf/CX9GtvKGKjnlj5Wgl3Qrwarh2iKqLEohsC++\nzFLJRUUYAbHgUHGHGhvmjqAxAbWa6b+kf0q3CNlCEW9eYvLBHnhqyJsBxNC8CA9B\n8o5c1F4SRnS06JC5htbrRiVQCSOtOyZAW3nEyKLj52AQMYITlWO0ljBGiZ1YULQB\nokc6aRtcrV7sS8H+vmwUBuiJ7zt9nOdLAtL4YuvDn/LfL3t3+uq4SY3PZUwc1l/1\n3J73Zjn+0pygZK0tHirH8Dxz+pT0NkAONK5npwIDAQABAoIBAQDheYI/foq7zzEw\n1Wz5ZOq6j1HQNYQ9R+u0Diiymp0KqKQd/TeurV0Q4wok6KZJR7ERvRXrKGwlqCQU\n4nz+0SmwwKWhe+ir1jILlx9Y9qguNa/tKWX/kH6JCDa9Dtia9czpx2S72dk9HuZ/\nII3mRMs6pRZEVluriGkr6W8osBE8kELwkVzu9MBOnGtX/VJPfh030pwZKkPU/mII\nkJ8Z1+uVZF6Q68vfV380Ysqzp7sTEn8YSfryahtyX1IpZdAgO4ty+ZrwM6IB7vzY\nX55jXO5EbbJZQrUIk+xeV0jQWV9HuDUEUIXLIlBI5OJwbuWZVzJaFlNegWFyc2a6\ncXSVZiSxAoGBAP7GY0cI8Vjrm/SHMOoZRXEzcKE1RtM9D+BDyGp+lnhllTB9zHBt\nt82yQJb26NnpUjBBjyZ9lCBTvP4vE8aJYfQstZqrz5LqSLFxdHrqiaIaGakv0fmj\nskLBDRJXyvoKofOjvSWJNhOD0rHHBvXKq6vV1aUJdU8lr6WSyaLbso2/AoGBAO2t\nk5VQ6h7MVAF6ZqTGFqRedvB9pG2t0D8jW+LcBvkUVDSUx4M20yztazfKH/iIjVY/\nWwAphL4ulX75dc30DzlJiDm5dBXCbFFPHmrls18r3GodGccD+Cp+F9u38nXzVpTK\nR91QP/NO255Xm4a6QuRzWokWYl5UeONlpzaChXAZAoGBAJl7eGldyM9xuNUZ8GzG\n5p+ohoyHZPBy07KeAwms0wca40KANn3wiw8e+Gw5uNM2DS5HAG8Grgq/h5Z1U+uB\n7gHEQW85W+Y8v6guGibGTj3ajWTwCwXiCMzQMgi/3Oa/Kwt0s8j+HRaqjm5M4TOH\ncd4mBvvSc9pHcMZFZLV4tttPAoGADKR0+zZIncbEmSeHmjAnOCsGLJiiTGs4boNU\n+eY2QL2CFSHs0t/xr6wZTehkdvXcfr/z+Tg8JVmY/h4K1B+tR6DPrDJfKGElHdYV\nih4ZwnA00zglDN77LldysW9BaGC/ND7mP7FrFWgWan/CeBIkSL6SDESyis33eDEK\nCe47ZtECgYEA/VNOycCq80LW25sDWKM/WV+QqClp4XtAVA4nOdG+myxXZdDcIbzt\nveYW/o+joE+WoAY8Dj/q8+xyyGkraukkacXWrhfwTS2KYpaOtewAjcpK7zjU4mui\nmRVGmSSRAkchyftITeM3jW86gN5ixOik1gWt5E91StfwwIgyUwrpbq4=\n-----END RSA PRIVATE KEY-----\nEOF\ncurl -L https://www.opscode.com/chef/install.sh | bash\nmkdir /usr/lib/systemd/system; ln -s /bin/systemctl /usr/bin/systemctl\nchef-client --environment redisha -j /etc/chef/first-run.json\n/usr/local/bin/cfn-signal -e $? --resource RedisInitialSeed --stack "
+				"userDataPost": "\ncurl -L https://www.opscode.com/chef/install.sh | bash\nmkdir /usr/lib/systemd/system; ln -s /bin/systemctl /usr/bin/systemctl\nchef-client -j /etc/chef/first-run.json\n/usr/local/bin/cfn-signal -e $? --resource RedisInitialSeed --stack "
 			}
 		}
 	}
