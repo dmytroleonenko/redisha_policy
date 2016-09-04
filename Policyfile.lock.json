@@ -1,0 +1,282 @@
+{
+  "revision_id": "45abe5783b32fc8c0ea505bc1f5f32a20d0b46effb482ae5ed61997866bc7a48",
+  "name": "redisha-service",
+  "run_list": [
+    "recipe[redis-multi::default]",
+    "recipe[redis-multi::enable]",
+    "recipe[redis-multi::sentinel]",
+    "recipe[redis-multi::sentinel_default]",
+    "recipe[redis-multi::sentinel_enable]"
+  ],
+  "cookbook_locks": {
+    "redis-multi": {
+      "version": "1.0.1",
+      "identifier": "7367aa2f35111b19a3c16d66b4e6a1268013d5ed",
+      "dotted_decimal_identifier": "32483602955833627.7216925577229542.177186729612781",
+      "cache_key": "redis-multi-4fbef613fc935ab8a165b847a2597e6446004920",
+      "origin": "https://github.com/rackspace-cookbooks/redis-multi",
+      "source_options": {
+        "git": "https://github.com/rackspace-cookbooks/redis-multi",
+        "revision": "4fbef613fc935ab8a165b847a2597e6446004920"
+      }
+    },
+    "redisio": {
+      "version": "2.2.2",
+      "identifier": "6a933b3b1b65111706aa3cc3b0094bf5e670189b",
+      "dotted_decimal_identifier": "29998230135334161.6481252698009609.83519505176731",
+      "cache_key": "redisio-87d1508cc0d1e1a2567de7245a5ec05a7e357519",
+      "origin": "https://github.com/rackspace-cookbooks/redisio",
+      "source_options": {
+        "git": "https://github.com/rackspace-cookbooks/redisio",
+        "revision": "87d1508cc0d1e1a2567de7245a5ec05a7e357519",
+        "tag": "2.0.0_wip"
+      }
+    },
+    "apt": {
+      "version": "4.0.2",
+      "identifier": "51664f9858292385ed1c36cb8296b40046838435",
+      "dotted_decimal_identifier": "22911965157927203.37696877336691350.197913276023861",
+      "cache_key": "apt-4.0.2-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/apt/versions/4.0.2/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/apt/versions/4.0.2/download",
+        "version": "4.0.2"
+      }
+    },
+    "compat_resource": {
+      "version": "12.14.0",
+      "identifier": "0e312445de07c01dbf8a7ee3f34d1327ce285503",
+      "dotted_decimal_identifier": "3994681534711744.8373375879869261.21061683401987",
+      "cache_key": "compat_resource-12.14.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/compat_resource/versions/12.14.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/compat_resource/versions/12.14.0/download",
+        "version": "12.14.0"
+      }
+    },
+    "chef-sugar": {
+      "version": "3.4.0",
+      "identifier": "3b6a6ac831350b4f673bc5b8668c0cf6fafd6ed6",
+      "dotted_decimal_identifier": "16724030483674379.22350029578069644.14254912401110",
+      "cache_key": "chef-sugar-3.4.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-sugar/versions/3.4.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/chef-sugar/versions/3.4.0/download",
+        "version": "3.4.0"
+      }
+    },
+    "ulimit": {
+      "version": "0.4.0",
+      "identifier": "605859b5ac1de72caf664f6f16a661000dd5163f",
+      "dotted_decimal_identifier": "27118740087512551.12577752929474214.106652859962943",
+      "cache_key": "ulimit-0.4.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/ulimit/versions/0.4.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/ulimit/versions/0.4.0/download",
+        "version": "0.4.0"
+      }
+    },
+    "build-essential": {
+      "version": "6.0.4",
+      "identifier": "6ca850c821bde0e559359e33926756a6da7b8596",
+      "dotted_decimal_identifier": "30584362393255392.64555856489058919.95274630088086",
+      "cache_key": "build-essential-6.0.4-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/build-essential/versions/6.0.4/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/build-essential/versions/6.0.4/download",
+        "version": "6.0.4"
+      }
+    },
+    "seven_zip": {
+      "version": "2.0.2",
+      "identifier": "8e6795446cfa8e0a4a09cef4d5d35eb2d522a24d",
+      "dotted_decimal_identifier": "40083337488693902.2896155754419667.104122173006413",
+      "cache_key": "seven_zip-2.0.2-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/seven_zip/versions/2.0.2/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/seven_zip/versions/2.0.2/download",
+        "version": "2.0.2"
+      }
+    },
+    "windows": {
+      "version": "1.44.3",
+      "identifier": "856961abed6d3eb7083b1dd1d71bdd130a809576",
+      "dotted_decimal_identifier": "37552040119725374.51518970734434075.243073850316150",
+      "cache_key": "windows-1.44.3-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/windows/versions/1.44.3/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/windows/versions/1.44.3/download",
+        "version": "1.44.3"
+      }
+    },
+    "chef_handler": {
+      "version": "1.4.0",
+      "identifier": "aa794c0c3a03d09a5e22ca2ffb70115fda923471",
+      "dotted_decimal_identifier": "47984113570415568.43450649927482224.19103386580081",
+      "cache_key": "chef_handler-1.4.0-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/chef_handler/versions/1.4.0/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/chef_handler/versions/1.4.0/download",
+        "version": "1.4.0"
+      }
+    },
+    "mingw": {
+      "version": "1.2.4",
+      "identifier": "c4f0ae0ce0635c9ec82cdc01b570a7dcc1b19521",
+      "dotted_decimal_identifier": "55433725766296412.44693141315499376.184566584284449",
+      "cache_key": "mingw-1.2.4-supermarket.chef.io",
+      "origin": "https://supermarket.chef.io:443/api/v1/cookbooks/mingw/versions/1.2.4/download",
+      "source_options": {
+        "artifactserver": "https://supermarket.chef.io:443/api/v1/cookbooks/mingw/versions/1.2.4/download",
+        "version": "1.2.4"
+      }
+    }
+  },
+  "default_attributes": {
+    "redisio": {
+      "job_control": "systemd",
+      "sentinel": {
+        "manage_config": "false"
+      },
+      "default_settings": {
+        "address": "0.0.0.0"
+      },
+      "sentinel_defaults": {
+        "failover-timeout": "30000",
+        "down-after-milliseconds": "5000",
+        "quorum_count": "3"
+      }
+    }
+  },
+  "override_attributes": {
+
+  },
+  "solution_dependencies": {
+    "Policyfile": [
+      [
+        "redis-multi",
+        ">= 0.0.0"
+      ],
+      [
+        "redisio",
+        ">= 0.0.0"
+      ],
+      [
+        "apt",
+        "= 4.0.2"
+      ],
+      [
+        "compat_resource",
+        "= 12.14.0"
+      ],
+      [
+        "chef-sugar",
+        "= 3.4.0"
+      ],
+      [
+        "ulimit",
+        "= 0.4.0"
+      ],
+      [
+        "build-essential",
+        "= 6.0.4"
+      ],
+      [
+        "seven_zip",
+        "= 2.0.2"
+      ],
+      [
+        "windows",
+        "= 1.44.3"
+      ],
+      [
+        "chef_handler",
+        "= 1.4.0"
+      ],
+      [
+        "mingw",
+        "= 1.2.4"
+      ]
+    ],
+    "dependencies": {
+      "redis-multi (1.0.1)": [
+        [
+          "apt",
+          ">= 0.0.0"
+        ],
+        [
+          "chef-sugar",
+          ">= 0.0.0"
+        ],
+        [
+          "redisio",
+          "~> 2.1"
+        ]
+      ],
+      "apt (4.0.2)": [
+        [
+          "compat_resource",
+          ">= 12.10.0"
+        ]
+      ],
+      "compat_resource (12.14.0)": [
+
+      ],
+      "chef-sugar (3.4.0)": [
+
+      ],
+      "redisio (2.2.2)": [
+        [
+          "ulimit",
+          ">= 0.1.2"
+        ],
+        [
+          "build-essential",
+          ">= 0.0.0"
+        ]
+      ],
+      "ulimit (0.4.0)": [
+
+      ],
+      "build-essential (6.0.4)": [
+        [
+          "seven_zip",
+          ">= 0.0.0"
+        ],
+        [
+          "mingw",
+          ">= 1.1.0"
+        ],
+        [
+          "compat_resource",
+          ">= 12.10.0"
+        ]
+      ],
+      "seven_zip (2.0.2)": [
+        [
+          "windows",
+          ">= 1.2.2"
+        ]
+      ],
+      "windows (1.44.3)": [
+        [
+          "chef_handler",
+          ">= 0.0.0"
+        ]
+      ],
+      "chef_handler (1.4.0)": [
+
+      ],
+      "mingw (1.2.4)": [
+        [
+          "seven_zip",
+          ">= 0.0.0"
+        ],
+        [
+          "compat_resource",
+          ">= 0.0.0"
+        ]
+      ]
+    }
+  }
+}
